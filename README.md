@@ -3,7 +3,7 @@ Differential Cryptanalysis of the Reduced Pointer Authentication Code Function u
 ---
 
 Title: "Differential Cryptanalysis of the Reduced Pointer Authentication Code Function used in Arm’s FEAT_PACQARMA3 Feature"
-Implementation: Shibam Ghosh, Roberto Avanzi
+Implementation: Roberto Avanzi and Shibam Ghosh
 Published At: " Transactions on Symmetric Cryptology 2025 Issue 1"
 Full Version: "eprint Soon"
 
