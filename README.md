@@ -9,7 +9,7 @@ Full Version: "eprint Soon"
 
 ---
 <p align="center">
-  <img src="fig/keyRecovery-frontonly-shorterback-no-bottom.pdf" alt="Sublime's custom image"/>
+  <img src="fig/keyRecovery-frontonly-shorterback-no-bottom.png" />
 </p>
 
 ## Table of contents
