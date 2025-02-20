@@ -1,4 +1,4 @@
-Description and User Guide for the Supplementary Material
+Differential Cryptanalysis of the Reduced Pointer Authentication Code Function used in Arm’s FEAT_PACQARMA3 Feature: Description and User Guide for the Supplementary Material
 =========================================================
 
 &nbsp;
