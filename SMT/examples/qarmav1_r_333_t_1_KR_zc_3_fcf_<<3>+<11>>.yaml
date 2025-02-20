@@ -1,0 +1,47 @@
+cipher: qarmav1
+sweight: 0x0031
+parameter: 3
+roundsF: 3
+roundsB: 3
+tweaks: 1
+wordsize: 4
+blocksize: 64
+mode: 2
+fixedVariables:
+- FSC0r0: "0x0"
+- FSC1r0: "0x0"
+- FSC2r0: "0x0"
+- FSC5r0: "0x0"
+- FSC7r0: "0x0"
+- FSC8r0: "0x0"
+- FSC9r0: "0x0"
+- FSC12r0: "0x0"
+- FSC13r0: "0x0"
+- FSC14r0: "0x0"
+- FSC15r0: "0x0"
+- BSC0r0: "0x0"
+- BSC1r0: "0x0"
+- BSC2r0: "0x0"
+- BSC5r0: "0x0"
+- BSC7r0: "0x0"
+- BSC8r0: "0x0"
+- BSC9r0: "0x0"
+- BSC12r0: "0x0"
+- BSC13r0: "0x0"
+- BSC15r0: "0x0"
+- FT0r0: "0x0"
+- FT1r0: "0x0"
+- FT2r0: "0x0"
+- FT3r0: "0x0"
+- FT4r0: "0x0"
+- FT5r0: "0x0"
+- FT6r0: "0x0"
+- FT7r0: "0x0"
+- FT8r0: "0x0"
+- FT9r0: "0x0"
+- FT10r0: "0x2"
+- FT11r0: "0x0"
+- FT12r0: "0x8"
+- FT13r0: "0x4"
+- FT14r0: "0x0"
+- FT15r0: "0x0"

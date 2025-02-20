@@ -1,0 +1,26 @@
+cipher: qarmav1
+sweight: 0
+parameter: 2
+roundsF: 2
+roundsB: 1
+tweaks: 1
+wordsize: 4
+blocksize: 64
+mode: 2
+fixedVariables:
+- FT0r0: "0x1"
+- FT1r0: "0xC"
+- FT2r0: "0x2"
+- FT3r0: "0x3"
+- FT4r0: "0x0"
+- FT5r0: "0x4"
+- FT6r0: "0xA"
+- FT7r0: "0x0"
+- FT8r0: "0x0"
+- FT9r0: "0x3"
+- FT10r0: "0xC"
+- FT11r0: "0x0"
+- FT12r0: "0xC"
+- FT13r0: "0x8"
+- FT14r0: "0x0"
+- FT15r0: "0x4"

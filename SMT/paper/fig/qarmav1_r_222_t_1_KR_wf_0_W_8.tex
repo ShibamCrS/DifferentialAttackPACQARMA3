@@ -1,0 +1,104 @@
+\documentclass[border=1.9pt]{standalone}
+\input includes/macros.tex
+\input tikz-defs.tex
+\usepackage{qarma}
+\input includes/representation-macs.tex
+\begin{document}
+
+\iffalse
+
+{'fsc': ['-1,0,0,-1,-1,0,C,-1,0,-1,-1,0,2,D,0,7', '6,0,0,3,A,0,0,2,0,2,D,0,0,0,0,0', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,0,0,0,0,F,0,0,0,0,0,0,0,0,0,F'],
+'fat': ['', '-1,0,0,-1,-1,0,0,-1,0,-1,-1,0,0,0,0,0', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,0,0,0,B,0,0,3,9,0,0,D,0,9,D,0'],
+'fpm': ['', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,D,0,9,0,0,0,3,0,D,0,9,0,B,0,0', '0,0,0,0,0,0,0,0,F,0,0,0,F,0,0,0'],
+'fmc': ['', '', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,0,0,0,0,E,0,0,0,0,0,0,0,0,0,C'],
+'fwn': ['0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,3'],
+'bsc': ['-1,0,0,-1,-1,0,C,-1,0,-1,-1,0,2,D,0,7', '6,0,0,3,A,0,0,2,0,2,D,0,0,0,0,0', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,0,0,0,0,F,0,0,0,0,0,0,0,0,0,F'],
+'bat': ['', '-1,0,0,-1,-1,0,0,-1,0,-1,-1,0,0,0,0,0', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,0,0,0,B,0,0,3,9,0,0,D,0,9,D,0'],
+'bpm': ['', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,D,0,9,0,0,0,3,0,D,0,9,0,B,0,0', '0,0,0,0,0,0,0,0,F,0,0,0,F,0,0,0'],
+'bmc': ['', '', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,0,0,0,0,E,0,0,0,0,0,0,0,0,0,C'],
+'bwn': ['0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', '0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,3'],
+'fDCsc': ['1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0', '1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0'],
+'fDCat': ['1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0'],
+'fDCpm': [], 'fDCmc': [], 'bDCsc': ['1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0', '1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0'],
+'bDCat': ['1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0'],
+'bDCpm': [], 'bDCmc': [], 'ft': ['5,0,0,2,0,0,C,0,0,0,0,0,2,D,0,7', '6,0,0,3,A,0,0,2,0,2,D,0,0,0,0,0', '0,0,0,0,B,0,0,3,9,0,0,D,0,9,D,0'],
+'bt': ['5,0,0,2,0,0,C,0,0,0,0,0,2,D,0,7', '6,0,0,3,A,0,0,2,0,2,D,0,0,0,0,0', '0,0,0,0,B,0,0,3,9,0,0,D,0,9,D,0']}
+
+\fi
+
+\begin{tikzpicture} 
+\node[state] at (1,0) (ft-0) {\MatrixSingleState{\arrayofnumbers{black}{5,0,0,2,0,0,C,0,0,0,0,0,2,D,0,7}}};
+\node[miniXOR]  at (1,-2) (ftxor-0) {};
+\node[miniXOR]  at (1,-4) (btxor-0) {};
+\node[state] at (5,0) (ft-1) {\MatrixSingleState{\arrayofnumbers{black}{6,0,0,3,A,0,0,2,0,2,D,0,0,0,0,0}}};
+\node[miniXOR]  at (5,-2) (ftxor-1) {};
+\node[miniXOR]  at (5,-4) (btxor-1) {};
+\node[state] at (11,0) (ft-2) {\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,B,0,0,3,9,0,0,D,0,9,D,0}}};
+\node[miniXOR]  at (11,-2) (ftxor-2) {};
+\node[miniXOR]  at (11,-4) (btxor-2) {};
+\draw[cross line, arrow] (ft-0) -- node[above] {\scriptsize $h,\omega$} (ft-1);
+\draw[cross line, arrow] (ft-1) -- node[above] {\scriptsize $h,\omega$} (ft-2);
+\node[state] at (0,-2) (fsc-0) {\MatrixSingleState{\arrayofnumbers{black}{-1,0,0,-1,-1,0,C,-1,0,-1,-1,0,2,D,0,7}}};
+\node[state] at (2,-2) (fat-1) {\MatrixSingleState{\arrayofnumbers{black}{-1,0,0,-1,-1,0,0,-1,0,-1,-1,0,0,0,0,0}}};
+\node[state] at (4,-2) (fsc-1) {\MatrixSingleState{\arrayofnumbers{black}{6,0,0,3,A,0,0,2,0,2,D,0,0,0,0,0}}};
+\node[state] at (6,-2) (fat-2) {\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}};
+\node[state] at (8,-2) (fmc-2){\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}};
+\node[state] at (10,-2) (fsc-2) {\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}};
+\node[state] at (12,-2) (fat-3) {\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,B,0,0,3,9,0,0,D,0,9,D,0}}};
+\node[state] at (14,-2) (fmc-3){\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,E,0,0,0,0,0,0,0,0,0,C}}};
+\node[state] at (16,-2) (fsc-3) {\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,F,0,0,0,0,0,0,0,0,0,F}}};
+\node[state] at (0,-4) (bsc-0) {\MatrixSingleState{\arrayofnumbers{black}{-1,0,0,-1,-1,0,C,-1,0,-1,-1,0,2,D,0,7}}};
+\node[state] at (2,-4) (bat-1) {\MatrixSingleState{\arrayofnumbers{black}{-1,0,0,-1,-1,0,0,-1,0,-1,-1,0,0,0,0,0}}};
+\node[state] at (4,-4) (bsc-1) {\MatrixSingleState{\arrayofnumbers{black}{6,0,0,3,A,0,0,2,0,2,D,0,0,0,0,0}}};
+\node[state] at (6,-4) (bat-2) {\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}};
+\node[state] at (8,-4) (bmc-2){\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}};
+\node[state] at (10,-4) (bsc-2) {\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}};
+\node[state] at (12,-4) (bat-3) {\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,B,0,0,3,9,0,0,D,0,9,D,0}}};
+\node[state] at (14,-4) (bmc-3){\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,E,0,0,0,0,0,0,0,0,0,C}}};
+\node[state] at (16,-4) (bsc-3) {\MatrixSingleState{\arrayofnumbers{black}{0,0,0,0,0,F,0,0,0,0,0,0,0,0,0,F}}};
+\node[draw, thin, rounded corners=0.6mm, fit={(fsc-1)}, inner sep=0.6mm] (X) {};
+\node[draw, thin, rounded corners=0.6mm, fit={(bsc-1)}, inner sep=0.6mm] (X) {};
+\node[red, draw, thin, rounded corners=0.6mm, fit={(bsc-0)}, inner sep=0.6mm] (X) {};
+\node[red, draw, thin, rounded corners=0.6mm, fit={(fsc-0)}, inner sep=0.6mm] (X) {};
+\draw[cross line, worra,red] (fsc-0) -- (ftxor-0);
+\draw[cross line, worra,red] (ftxor-0) -- (fat-1);
+\draw[cross line, worra,red] (fat-1)  -- node[above] {\scriptsize $\mybar S$}  (fsc-1);
+\draw[cross line, worra,red] (bsc-0) -- (btxor-0);
+\draw[cross line, worra,red] (btxor-0) -- (bat-1);
+\draw[cross line, worra,red] (bat-1)  -- node[above] {\scriptsize $\mybar S$}  (bsc-1);
+\draw[cross line, arrow] (fsc-1) -- (ftxor-1);
+\draw[cross line, arrow] (ftxor-1) -- (fat-2) ;
+\draw[cross line, arrow] (fat-2) -- node[above] {\scriptsize $\tau,M$} (fmc-2);
+\draw[cross line, arrow] (fmc-2) -- node[above] {\scriptsize $S$} (fsc-2);
+\draw[cross line, worra] (bsc-1) -- (btxor-1);
+\draw[cross line, worra] (btxor-1) -- (bat-2);
+\draw[cross line, worra] (bat-2) -- node[above] {\scriptsize $\mybar\tau,M$} (bmc-2);
+\draw[cross line, worra] (bmc-2) -- node[above] {\scriptsize $\mybar S$} (bsc-2);
+\draw[cross line, arrow] (fsc-2) -- (ftxor-2);
+\draw[cross line, arrow] (ftxor-2) -- (fat-3) ;
+\draw[cross line, arrow] (fat-3) -- node[above] {\scriptsize $\tau,M$} (fmc-3);
+\draw[cross line, arrow] (fmc-3) -- node[above] {\scriptsize $S$} (fsc-3);
+\draw[cross line, worra] (bsc-2) -- (btxor-2);
+\draw[cross line, worra] (btxor-2) -- (bat-3);
+\draw[cross line, worra] (bat-3) -- node[above] {\scriptsize $\mybar\tau,M$} (bmc-3);
+\draw[cross line, worra] (bmc-3) -- node[above] {\scriptsize $\mybar S$} (bsc-3);
+\draw[cross line, connect] (ft-0) -- ($(ft-0)+(0,-0.8)$);
+\draw[cross line, connect, dashed] ($(ft-0)+(0,-0.8)$) -- ($(ft-0)+(0,-1.5)$);
+\draw[cross line, arrow] ($(ft-0)+(0,-1.5)$) -- (ftxor-0);
+\draw[cross line, connect, dashed] ($(btxor-0)+(0,1.2)$) -- ($(btxor-0)+(0,0.5)$);
+\draw[cross line, arrow] ($(btxor-0)+(0,0.5)$) -- (btxor-0);
+\draw[cross line, connect] (ft-1) -- ($(ft-1)+(0,-0.8)$);
+\draw[cross line, connect, dashed] ($(ft-1)+(0,-0.8)$) -- ($(ft-1)+(0,-1.5)$);
+\draw[cross line, arrow] ($(ft-1)+(0,-1.5)$) -- (ftxor-1);
+\draw[cross line, connect, dashed] ($(btxor-1)+(0,1.2)$) -- ($(btxor-1)+(0,0.5)$);
+\draw[cross line, arrow] ($(btxor-1)+(0,0.5)$) -- (btxor-1);
+\draw[cross line, connect] (ft-2) -- ($(ft-2)+(0,-0.8)$);
+\draw[cross line, connect, dashed] ($(ft-2)+(0,-0.8)$) -- ($(ft-2)+(0,-1.5)$);
+\draw[cross line, arrow] ($(ft-2)+(0,-1.5)$) -- (ftxor-2);
+\draw[cross line, connect, dashed] ($(btxor-2)+(0,1.2)$) -- ($(btxor-2)+(0,0.5)$);
+\draw[cross line, arrow] ($(btxor-2)+(0,0.5)$) -- (btxor-2);
+\draw[cross line, arrow] (fsc-3) -- node[right] {\scriptsize $\tau,M,\mybar \tau$} (bsc-3);
+\end{tikzpicture}
+
+\end{document}
+
