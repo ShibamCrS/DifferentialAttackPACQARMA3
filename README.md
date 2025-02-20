@@ -1,5 +1,3 @@
-Differential Cryptanalysis of the Reduced Pointer Authentication Code Function used in Arm’s FEAT_PACQARMA3 Feature: Description and User Guide for the Supplementary Material
-=========================================================
 ---
 
 Title: "Differential Cryptanalysis of the Reduced Pointer Authentication Code Function used in Arm’s FEAT_PACQARMA3 Feature"
@@ -8,6 +6,9 @@ Published At: " Transactions on Symmetric Cryptology 2025 Issue 1"
 Full Version: "eprint Soon"
 
 ---
+Differential Cryptanalysis of the Reduced Pointer Authentication Code Function used in Arm’s FEAT_PACQARMA3 Feature: Description and User Guide for the Supplementary Material
+=========================================================
+
 <p align="center">
   <img src="fig/keyRecovery-frontonly-shorterback-no-bottom.png" />
 </p>
