@@ -31,7 +31,7 @@ This artifact provides supplementary material for our work on the differential c
 It includes:
 
 - A model for the finding **differential characteristics** of the **QARMA** block cipher, implemented as a program for **STP (Simple Theorem Prover)**, which is an extension of **Stefan Kölbl’s cryptosmt** ([GitHub Repository](https://github.com/kste/cryptosmt.git)).  
-- Verification of the characteristics on a highly optimized implementation of **QARMA**.  
+- Verification of the differential characteristics used in our attack on a highly optimized implementation of QARMA.  
 
 The programs included in this repository should compile and run on any unix and unix-like system.
 We have compiled and used them under `linux` and `macOS`, with both `gcc` and `llvm` (`clang`) C compilers.
