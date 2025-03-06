@@ -26,9 +26,13 @@ Differential Cryptanalysis of the Reduced Pointer Authentication Code Function u
 
 
 &nbsp;
+This artifact provides supplementary material for our work on the differential cryptanalysis of **FEAT_PACQARMA3**.
+It includes:
 
-The programs included in the `supplementary_material` directory should compile and run on any unix and unix-like system.
+- A model for the finding **differential characteristics** of the **QARMA** block cipher, implemented as a program for **STP (Simple Theorem Prover)**, which is an extension of **Stefan Kölbl’s cryptosmt** ([GitHub Repository](https://github.com/kste/cryptosmt.git)).  
+- Verification of the characteristics on a highly optimized implementation of **QARMA**.  
 
+The programs included in this repository should compile and run on any unix and unix-like system.
 We have compiled and used them under `linux` and `macOS`, with both `gcc` and `llvm` (`clang`) C compilers.
 
 &nbsp;
