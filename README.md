@@ -130,7 +130,7 @@ As a bonus you get all the tikz commands and macros we use to typeset out figure
 
 Assuming you have read the help output, let us see some examples:
 ```
-python3 --cipher qarmav1 -r 3 -F 2 -B 2 --latex -k -f 0 -s 12
+python3 cryptosmt.py --cipher qarmav1 -r 3 -F 2 -B 2 --latex -k -f 0 -s 12
  ```
 runs a search for a maximum probability characteristic
 for `QARMAv1`, with just two rounds before the reflector (`-F 2`)
