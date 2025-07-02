@@ -48,7 +48,7 @@ void calculate_stat(long double *data, long double nr_of_pairs, int expp, uint64
         sumSq += (data[i] - mean) * (data[i] - mean);
     }
     sd = sqrt(sumSq / exp);
-    
+
     l2_mean = logl(mean)/ log(2.0);
     l2_sd   = logl(sd)  / log(2.0);
     l2_min  = logl(min) / log(2.0);
@@ -72,11 +72,11 @@ void run(int type, int logData, uint64_t tD, uint64_t inD, uint64_t outD,
          uint64_t MASK, uint64_t numZeroCell, long double q) {
 #ifdef PRINT
     printf("...............Given Diff..................................\n");
-    printf("tD %016lX  \n",  tD);
-    printf("inD %016lX \n",  inD);
-    printf("outD %016lX \n", outD);
-    printf("MASK %016lX \n", MASK);
-    printf("Number of zero cells at \\Delta_out = %ld \n", numZeroCell);
+    printf("tD %016llu  \n",  tD);
+    printf("inD %016llu \n",  inD);
+    printf("outD %016llu \n", outD);
+    printf("MASK %016llu \n", MASK);
+    printf("Number of zero cells at \\Delta_out = %llu \n", numZeroCell);
 #endif
     uint64_t data = (1UL << logData);
     uint64_t HIT = 0UL;
@@ -88,7 +88,7 @@ void run(int type, int logData, uint64_t tD, uint64_t inD, uint64_t outD,
     uint64_t thresholdForSuccess =  randomHit + (uint64_t)ceil(th);
 
     long double arr[EXP];
-    long double hitD; 
+    long double hitD;
     int expp = 0;
     struct timespec start, end;
     double time_meter;
@@ -113,14 +113,14 @@ void run(int type, int logData, uint64_t tD, uint64_t inD, uint64_t outD,
 #ifdef PRINT
     printf("\n");
     printf("Successful experiments = %d out of %d \n", expp, EXP);
-    
+
     printf("Expected Random Hit = %llu,  (2^%5.2Lf) %Lf \n",randomHit,logl((double)randomHit)/logl(2.0), temp);
-    printf("s.d.(\\eta) = %Lf %ld\n", sdr);
-    printf("threshold for success = %ld\n", thresholdForSuccess);
+    printf("s.d.(\\eta) = %Lf\n", sdr);
+    printf("threshold for success = %llu\n", thresholdForSuccess);
     printf("Number Of Pairs in each experiments (N): (2^%5.2Lf) \n", logl( (double) data) / logl(2.0));
 #endif
     calculate_stat(arr, (long double)data, EXP, randomHit, sdr, logData);
-    printf("& %d\\ofhundred & \\( (%d, %d) \\) \\\\ \n", expp, bb0, bb1);
+    printf("& %d\\ofhundred & \\( (%llu, %llu) \\) \\\\ \n", expp, bb0, bb1);
 }
 
 #include "equations.h"

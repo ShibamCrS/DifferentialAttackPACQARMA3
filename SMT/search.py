@@ -25,6 +25,33 @@ import shutil
 import logging
 from pathlib import Path
 
+###############################################################################
+
+import threading
+import time
+import click
+
+def spinner(message="Processing"):
+    def spin():
+        spinner_chars = "|/-\\"
+        i = 0
+        while not done.is_set():
+            click.echo(f"\r{message} {spinner_chars[i % len(spinner_chars)]}", nl=False)
+            time.sleep(0.1)
+            i += 1
+
+    done = threading.Event()
+    thread = threading.Thread(target=spin)
+    thread.start()
+
+    return done, thread
+
+def stop_spinner(done, thread):
+    done.set()
+    thread.join()
+    click.echo("\r", nl=False)  # Clear the spinner
+
+###############################################################################
 
 def latexIt(cipher, parameters, texFilename):
 
@@ -92,11 +119,11 @@ def findMinWeightCharacteristic(cipher, parameters):
         # print(variables)
 
         current_time = round(time.time() - start_time, 2)
-        print("W: {} : started at {}s".format(parameters["sweight"], current_time), end = "", flush=True)
-
+        message = f"Search for weight = {parameters["sweight"]} started at {current_time}s ..."
+        done, thread = spinner(message)
         result = solveSTP(stpFile)
         os.remove(stpFile)
-
+        stop_spinner(done, thread)
         current_time = round(time.time() - start_time, 2)
         print(" : ended at {}s".format(current_time), flush=True)
 
@@ -158,8 +185,12 @@ def findAllCharacteristicRepresentatives(cipher, parameters):
 
         # Automatically considers the excluded characteristics in to parameters["blockedCharacteristics"]
         variables = cipher.createSTP(stpFile, parameters)
+
+        message = f"Search for weight = {parameters["sweight"]} started at {current_time}s ..."
+        done, thread = spinner(message)
         result = solveSTP(stpFile)
         os.remove(stpFile)
+        stop_spinner(done, thread)
 
         # Check for solution
         if foundSolution(result):
@@ -239,12 +270,13 @@ def computeProbabilityOfDifferentials(cipher, parameters):
         cipher.createSTP(stp_file, parameters)
 
         # Start solver
+        done, thread = spinner("")
         sat_process = startSATsolver(stp_file)
         if debugComputeProbability:
             log_file = open(sat_logfile, "w")
 
         # Find the number of solutions with the SAT solver
-        print("Finding all trails of weight {}".format(parameters["sweight"]))
+        print(f"Finding all trails of weight {parameters["sweight"]}")
 
         # Watch the process and count solutions
         solutions = 0
@@ -257,15 +289,18 @@ def computeProbabilityOfDifferentials(cipher, parameters):
                 log_file.write(line)
             if "s SATISFIABLE" in line:
                 solutions += 1
-                print("*",end="", flush=True)
+                #print("*",end="", flush=True)
                 if solutions % 100 == 0:
+                    stop_spinner(done, thread)
                     ERASE_LINE = '\033[K'
                     print("\r" + ERASE_LINE,end="")
                     print("\r--- Time: {}s, Solutions: {}  ".format(round(time.time() - start_time, 2), solutions // 2), end="", flush=True)
+                    done, thread = spinner("")
 
         if debugComputeProbability:
             log_file.close()
 
+        stop_spinner(done, thread)
         ERASE_LINE = '\033[K'
         print("\r" + ERASE_LINE,end="")
         print("\r--- Time: {}s, Solutions: {}".format(round(time.time() - start_time, 2), solutions // 2), flush=True)
@@ -323,6 +358,7 @@ def computeProbabilityOfTruncatedDifferentials(cipher, parameters):
         cipher.createSTP(stp_file, parameters)
 
         # Start solver
+        done, thread = spinner("")
         sat_process = startSATsolver(stp_file)
 
         if debugComputeProbability:

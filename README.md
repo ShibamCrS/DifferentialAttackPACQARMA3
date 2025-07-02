@@ -1,17 +1,7 @@
----
-
-Title: "Differential Cryptanalysis of the Reduced Pointer Authentication Code Function used in Arm’s FEAT_PACQARMA3 Feature"
-Implementation: Roberto Avanzi and Shibam Ghosh
-Published At: " Transactions on Symmetric Cryptology 2025 Issue 1"
-Full Version:  " https://eprint.iacr.org/2025/321 "
-
----
-Differential Cryptanalysis of the Reduced Pointer Authentication Code Function used in Arm’s FEAT_PACQARMA3 Feature: Description and User Guide for the Supplementary Material
+Description and User Guide for the Supplementary Material
 =========================================================
 
-<p align="center">
-  <img src="fig/keyRecovery-frontonly-shorterback-no-bottom.png" />
-</p>
+&nbsp;
 
 ## Table of contents
 
@@ -27,13 +17,8 @@ Differential Cryptanalysis of the Reduced Pointer Authentication Code Function u
 
 &nbsp;
 
-This artifact provides supplementary material for our work on the differential cryptanalysis of **FEAT_PACQARMA3**.
-It includes:
+The programs included in the `supplementary_material` directory should compile and run on any unix and unix-like system.
 
-- A model for the finding **differential characteristics** of the **QARMA** block cipher, implemented as a program for **STP (Simple Theorem Prover)**, which is an extension of **Stefan Kölbl’s cryptosmt** ([GitHub Repository](https://github.com/kste/cryptosmt.git)).  
-- Verification of the differential characteristics used in our attack on a highly optimized implementation of QARMA.  
-
-The programs included in this repository should compile and run on any unix and unix-like system.
 We have compiled and used them under `linux` and `macOS`, with both `gcc` and `llvm` (`clang`) C compilers.
 
 &nbsp;
@@ -100,16 +85,22 @@ but heavily modified to support several features.
 
 ### 2.1 Dependencies<a name=smt_dependencies>
 
-`cryptosmt` requires `python` v3, `STP` and `cryptominisat5`
-to be installed, as well as a few python packages (if they are not installed, `python` will tell
-you which packages it needs).  Some paths are hardwired in `config.py`: if some program is not found
+`cryptosmt` requires `python` v3, `STP` and `cryptominisat5`.
+`STP` is available from https://stp.github.io .
+`cryptominisat5` is available from https://github.com/msoos/cryptominisat .
+We prefer to install them using the Homebrew https://brew.sh package manager. YMMV.
+
+
+Our programs also need additional python packages.
+If they are not installed, `python` will tell you which packages it needs.
+Among the dependencies to be installed there are
+`pyyaml`, `tabulate`, `numpy`, and `click` which are installed in a user environment by the commands
+`pip3 install pyyaml`, `pip3 install tabulate`, `pip3 install numpy`, and `pip3 install click`
+(they can be installed globally with the additional option `--break-system-packages`, which is not recommended).
+
+Some paths are hardwired in `config.py`: if some program is not found
 and you actually have installed it, try adding the right paths there.
 
-`STP` is available from https://stp.github.io
-
-`cryptominisat5` is available from https://github.com/msoos/cryptominisat
-
-But we prefer to install them using the Homebrew https://brew.sh package manager. YMMV.
 
 ### 2.2 Running `cryptosmt`<a name=smt_running>
 
@@ -130,8 +121,8 @@ As a bonus you get all the tikz commands and macros we use to typeset out figure
 
 Assuming you have read the help output, let us see some examples:
 ```
-python3 --cipher qarmav1 -r 3 -F 2 -B 2 --latex -k -f 0 -s 12
- ```
+python3 cryptosmt.py --cipher qarmav1 -r 3 -F 2 -B 2 --latex -k -f 0 -s 12
+```
 runs a search for a maximum probability characteristic
 for `QARMAv1`, with just two rounds before the reflector (`-F 2`)
 and two rounds after the reflextor (`-B 2`).
